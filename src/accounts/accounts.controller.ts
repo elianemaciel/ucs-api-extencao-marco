@@ -4,11 +4,14 @@ import { Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
 import { UpdateAccountDto } from './dto/update-account.dto'
 import { CreateAccountDto } from './dto/create-account.dto'
 
+
+@ApiTags('Accounts')
 @Controller('accounts')
 export class AccountsController {
   constructor(private readonly accountsService: AccountsService) {}
 
   @Post()
+  @ApiBody({ type: CreateAccountDto }) 
   create(@Body() accountDto: CreateAccountDto) {
     return this.accountsService.create(accountDto);
   }
