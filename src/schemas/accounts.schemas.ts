@@ -1,4 +1,4 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({ collection: 'accounts' })
 export class Accounts {
@@ -11,4 +11,4 @@ export class Accounts {
   @Prop({ required: true })
   limit: number;
 }
-export const AccountsSchema = SchemaFactory.createForClass(Accounts)
+export const AccountsSchema = SchemaFactory.createForClass(Accounts);

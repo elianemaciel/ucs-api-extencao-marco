@@ -1,4 +1,9 @@
-import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Request } from 'express';
 import { AuthService } from '../auth/auth.service';
 
@@ -14,6 +19,7 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException('Token não fornecido');
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     request['user'] = this.authService.validateToken(token);
     return true;
   }
@@ -26,4 +32,3 @@ export class AuthGuard implements CanActivate {
     return authHeader.split(' ')[1];
   }
 }
-
