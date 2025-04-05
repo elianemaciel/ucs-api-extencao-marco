@@ -8,7 +8,7 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from 'src/guards/guards.guard';
 import { AccountsService } from './accounts.service';
 import { CreateAccountDto } from './dto/create-account.dto';
@@ -21,6 +21,7 @@ export class AccountsController {
 
   @Post()
   @ApiBody({ type: CreateAccountDto })
+  @ApiBearerAuth('access-token')
   @UseGuards(AuthGuard)
   create(@Body() accountDto: CreateAccountDto) {
     return this.accountsService.create(accountDto);
@@ -28,24 +29,28 @@ export class AccountsController {
 
   @Get()
   @UseGuards(AuthGuard)
+  @ApiBearerAuth('access-token')
   findAll() {
     return this.accountsService.findAll();
   }
 
   @Get(':id')
   @UseGuards(AuthGuard)
+  @ApiBearerAuth('access-token')
   findOne(@Param('id') id: number) {
     return this.accountsService.findOne(id);
   }
 
   @Put(':id')
   @UseGuards(AuthGuard)
+  @ApiBearerAuth('access-token')
   update(@Param('id') id: number, @Body() accountDto: UpdateAccountDto) {
     return this.accountsService.update(id, accountDto);
   }
 
   @Delete(':id')
   @UseGuards(AuthGuard)
+  @ApiBearerAuth('access-token')
   remove(@Param('id') id: number) {
     return this.accountsService.remove(id);
   }
