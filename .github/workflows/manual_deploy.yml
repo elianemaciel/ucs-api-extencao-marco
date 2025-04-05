@@ -21,10 +21,10 @@ jobs:
         run: npm install --global vercel@latest
 
       - name: Baixar variáveis de ambiente da Vercel
-        run: vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Construir aplicação
-        run: vercel build --prod --token ${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Fazer deploy para produção
-        run: vercel deploy --prebuilt --prod --token ${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
